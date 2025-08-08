@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var settings = WindowBackgroundSettings.shared
+    @ObservedObject private var settings = WindowBackgroundSettings.shared
 
     var body: some View {
         VStack {
             Text("Custom Window Background Demo")
                 .font(.largeTitle)
 
-            Picker("Select Style", selection: $settings.style) {
+            Picker("Select Style", selection: $settings.windowBackgroundStyle) {
                 ForEach(WindowBackgroundStyle.allCases, id: \.self) { option in
                     Text(option.rawValue).tag(option)
                 }
@@ -17,7 +17,7 @@ struct MainView: View {
 
             Toggle("Use Tint Color", isOn: $settings.usingTintColor)
 
-            ColorPicker("Tint Color", selection: $settings.tintColor)
+            ColorPicker("Tint Color", selection: $settings.glassTintColor)
                 .disabled(!settings.usingTintColor)
         }
     }

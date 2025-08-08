@@ -16,18 +16,20 @@ class BackgroundViewController: NSViewController {
         containerView.autoresizingMask = [.width, .height]
         self.view = containerView
         
-        setupObservers()
+        // Set initial background view before setting up observers
         updateCurrentView()
+        setupObservers()
     }
     
     private func setupObservers() {
         Publishers.CombineLatest3(
-            settings.$style,
+            settings.$windowBackgroundStyle,
             settings.$usingTintColor,
-            settings.$tintColor
+            settings.$glassTintColor
         )
         .sink { [weak self] style, usingTintColor, tintColor in
-            self?.updateCurrentView()
+            print("Combine observer fired: \(style.rawValue), usingTintColor: \(usingTintColor)")
+            self?.updateCurrentView(style: style, usingTintColor: usingTintColor, tintColor: tintColor)
         }
         .store(in: &cancellables)
     }
@@ -109,10 +111,13 @@ class BackgroundViewController: NSViewController {
     }
 
     func updateCurrentView() {
-        let style = settings.style
+        let style = settings.windowBackgroundStyle
         let usingTintColor = settings.usingTintColor
-        let tintColor = settings.tintColor
-        
+        let tintColor = settings.glassTintColor
+        updateCurrentView(style: style, usingTintColor: usingTintColor, tintColor: tintColor)
+    }
+
+    func updateCurrentView(style: WindowBackgroundStyle, usingTintColor: Bool, tintColor: Color) {
         print("Updating background style to \(style.rawValue), usingTintColor: \(usingTintColor), tintColor: \(tintColor)")
         let newView = createView(for: style, usingTintColor: usingTintColor, tintColor: tintColor)
         replaceView(with: newView)
