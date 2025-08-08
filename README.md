@@ -16,9 +16,11 @@ Liquid Glass is introduced in macOS 26, which is available through `NSGlassEffec
 
 A regular glass effect that provides a frosted glass effect with a slight background blur and distortion on the edges.
 
-<p align="center">
-  <img src="./Images/1.png" width="620">
-</p>
+<picture align="center">
+    <source media="(prefers-color-scheme: dark)" srcset="./Images/1-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./Images/1.png">
+    <img src="./Images/1.png" width="800">
+</picture>
 
 ```swift
 let view = NSGlassEffectView()
@@ -30,9 +32,11 @@ view.style = .regular
 
 A clear variant of the glass effect that provides a transparent background without any blur.
 
-<p align="center">
-  <img src="./Images/2.png" width="620">
-</p>
+<picture align="center">
+    <source media="(prefers-color-scheme: dark)" srcset="./Images/2-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./Images/2.png">
+    <img src="./Images/2.png" width="800">
+</picture>
 
 ```swift
 let view = NSGlassEffectView()
@@ -44,9 +48,11 @@ view.style = .clear
 
 Glass effect with custom tint color applied.
 
-<p align="center">
-  <img src="./Images/3.png" width="620">
-</p>
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./Images/3-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./Images/3.png">
+    <img src="./Images/3.png" width="800">
+</picture>
 
 ```swift
 let view = NSGlassEffectView()
@@ -61,9 +67,12 @@ These styles use `NSVisualEffectView` with different materials and blending mode
 
 ### HUD Window
 
-<p align="center">
-  <img src="./Images/4.png" width="620">
-</p>
+
+<picture align="center">
+    <source media="(prefers-color-scheme: dark)" srcset="./Images/4-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./Images/4.png">
+    <img src="./Images/4.png" width="800">
+</picture>
 
 ```swift
 let view = NSVisualEffectView()
